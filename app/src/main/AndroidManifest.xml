@@ -283,7 +283,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.huanchengfly.tieba.post.share.FileProvider"
+            android:authorities="com.su.tieba.lite.plus.share.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -293,7 +293,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.huanchengfly.tieba.post.androidx-startup"
+            android:authorities="com.su.tieba.lite.plus.androidx-startup"
             android:exported="false"
             tools:node="merge">
             <meta-data
