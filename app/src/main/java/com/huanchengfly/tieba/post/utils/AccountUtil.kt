@@ -9,6 +9,7 @@ import com.huanchengfly.tieba.post.R
 import com.huanchengfly.tieba.post.api.Error
 import com.huanchengfly.tieba.post.api.TiebaApi
 import com.huanchengfly.tieba.post.api.interfaces.CommonCallback
+import com.huanchengfly.tieba.post.api.models.ProfileBean
 import com.huanchengfly.tieba.post.api.retrofit.ApiResult
 import com.huanchengfly.tieba.post.api.retrofit.doIfSuccess
 import com.huanchengfly.tieba.post.api.retrofit.exception.TiebaException
@@ -148,15 +149,36 @@ object AccountUtil {
                     return
                 }
                 val userId = myInfoBean.data.getUid().toString()
-                Account().setBduss(bduss)
+                val account = Account().setBduss(bduss)
                     .setPortrait(myInfoBean.data.getAvatarUrl())
                     .setUid(userId)
                     .setTbs(myInfoBean.data.getTbs())
                     .setItbTbs(myInfoBean.data.getItbTbs())
                     .setName(myInfoBean.data.getName())
-                    .setNameShow(myInfoBean.data.getShowName())
-                    .saveOrUpdate("uid = ? OR bduss = ?", userId, bduss)
-                commonCallback?.onSuccess(myInfoBean)
+                //由于MyInfoBean中的nameShow有误（依然显示为原始用户名）所以需要靠profile补充
+                TiebaApi.getInstance().profile(myInfoBean.data!!.uid.toString())
+
+                    .enqueue(object : Callback<ProfileBean> {
+
+                        private fun saveReturn() {
+                            account.setNameShow(myInfoBean.data.getShowName())
+                                .saveOrUpdate("uid = ? OR bduss = ?", userId, bduss)
+                            commonCallback?.onSuccess(myInfoBean)
+                        }
+
+                        override fun onResponse(
+                            call: Call<ProfileBean>,
+                            response: Response<ProfileBean>
+                        ) {
+                            myInfoBean.data.showName = response.body()!!.user!!.nameShow
+                            saveReturn()
+                        }
+
+                        override fun onFailure(call: Call<ProfileBean>, t: Throwable) {
+                            saveReturn()
+                        }
+                    })
+
             }
 
             override fun onFailure(call: Call<MyInfoBean>, t: Throwable) {

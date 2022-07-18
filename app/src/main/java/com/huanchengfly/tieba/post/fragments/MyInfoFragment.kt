@@ -18,7 +18,9 @@ import com.bumptech.glide.Glide
 import com.gyf.immersionbar.ImmersionBar
 import com.huanchengfly.tieba.post.R
 import com.huanchengfly.tieba.post.activities.*
+import com.huanchengfly.tieba.post.api.TiebaApi
 import com.huanchengfly.tieba.post.api.interfaces.CommonCallback
+import com.huanchengfly.tieba.post.api.models.ProfileBean
 import com.huanchengfly.tieba.post.enableChangingLayoutTransition
 import com.huanchengfly.tieba.post.goToActivity
 import com.huanchengfly.tieba.post.interfaces.Refreshable
@@ -28,6 +30,9 @@ import com.huanchengfly.tieba.post.ui.theme.utils.ColorStateListUtils
 import com.huanchengfly.tieba.post.ui.theme.utils.ThemeUtils
 import com.huanchengfly.tieba.post.utils.*
 import com.huanchengfly.tieba.post.widgets.theme.TintSwitch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyInfoFragment : BaseFragment(), View.OnClickListener, CompoundButton.OnCheckedChangeListener,
     Refreshable {
