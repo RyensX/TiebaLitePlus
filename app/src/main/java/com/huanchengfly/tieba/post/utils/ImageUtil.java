@@ -36,6 +36,7 @@ import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestOptions;
@@ -498,8 +499,8 @@ public class ImageUtil {
                         .skipMemoryCache(true));
                 break;
             case LOAD_TYPE_AVATAR:
-                requestBuilder.apply(RequestOptions.bitmapTransform(new RadiusTransformation(6))
-                        .placeholder(getPlaceHolder(imageView.getContext(), 6))
+                requestBuilder.apply(RequestOptions.bitmapTransform(new CircleCrop())
+                        //.placeholder(getPlaceHolder(imageView.getContext(), 6))
                         .skipMemoryCache(true));
                 break;
             case LOAD_TYPE_NO_RADIUS:

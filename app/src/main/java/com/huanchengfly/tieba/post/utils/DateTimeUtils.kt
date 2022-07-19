@@ -79,7 +79,7 @@ object DateTimeUtils {
         return fixTimestamp(timestamp.toString())
     }
 
-    private fun fixTimestamp(timestampString: String): Long {
+    fun fixTimestamp(timestampString: String): Long {
         val timestampStrBuilder: StringBuilder = StringBuilder(timestampString)
         while (timestampStrBuilder.length < 13) {
             timestampStrBuilder.append("0")

@@ -203,7 +203,7 @@ class ThreadMainPostAdapter(
         var timeText =
             context.getString(
                 R.string.tip_thread_item_thread,
-                DateTimeUtils.getRelativeTimeString(context, threadBean.createTime!!)
+                friendlyTime(threadBean.createTime!!)
             )
         if (user.ipAddress?.isNotEmpty() == true) {
             timeText += " "

@@ -121,7 +121,7 @@ class PostListAdapterHelper(
         textView.setOnClickListener(null)
         textView.setOnLongClickListener(null)
         textView.setLetterSpacing(0.02f)
-        textView.setTextSize(16f)
+        textView.setTextSize(15f)
         if (pureRead) {
             textView.setLineSpacing(0.5f, 1.3f)
         } else {

@@ -41,6 +41,7 @@ import com.huanchengfly.tieba.post.utils.BilibiliUtil.replaceVideoNumberSpan
 import com.huanchengfly.tieba.post.utils.DateTimeUtils.getRelativeTimeString
 import com.huanchengfly.tieba.post.utils.EmotionManager.registerEmotion
 import com.huanchengfly.tieba.post.utils.TiebaUtil.reportPost
+import com.huanchengfly.tieba.post.utils.UIUtil.dp
 import com.huanchengfly.tieba.post.widgets.MyLinearLayout
 import com.huanchengfly.tieba.post.widgets.VoicePlayerView
 import com.huanchengfly.tieba.post.widgets.theme.TintTextView
@@ -574,9 +575,9 @@ class ThreadReplyAdapter(context: Context) :
                 append(
                     bawuType, RoundBackgroundColorSpan(
                         context,
-                        Util.alphaColor(ThemeUtils.getColorByAttr(context, R.attr.colorAccent), 30),
+                        Util.alphaColor(ThemeUtils.getColorByAttr(context, R.attr.colorAccent), 20),
                         ThemeUtils.getColorByAttr(context, R.attr.colorAccent),
-                        DisplayUtil.dp2px(context, 10f).toFloat()
+                        9F.dp
                     ), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
@@ -613,7 +614,7 @@ class ThreadReplyAdapter(context: Context) :
         var timeText = context.getString(
             R.string.tip_thread_item,
             item.floor,
-            getRelativeTimeString(context, item.time!!)
+            friendlyTime(item.time!!)
         )
         if (userInfoBean?.ipAddress?.isNotEmpty() == true) {
             timeText += " "
@@ -651,7 +652,7 @@ class ThreadReplyAdapter(context: Context) :
             R.id.thread_list_item_agree_btn, if (item.agree?.diffAgreeNum != "0") {
                 context.getString(R.string.btn_agree_post, item.agree?.diffAgreeNum)
             } else {
-                context.getString(R.string.btn_agree_post_default)
+                ""
             }
         )
         viewHolder.itemView.background = getItemBackgroundDrawable(

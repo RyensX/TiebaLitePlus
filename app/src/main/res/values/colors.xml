@@ -44,7 +44,7 @@
     <color name="default_color_text">#FF31343C</color>
     <color name="default_color_text_on_primary">#FFFFFFFF</color>
     <color name="default_color_text_secondary">#FF545967</color>
-    <color name="default_color_text_disabled">#FFA8ADBB</color>
+    <color name="default_color_text_disabled">@android:color/darker_gray</color>
     <color name="default_color_toolbar">#FFFFFFFF</color>
     <color name="default_color_toolbar_item">#FF474B54</color>
     <color name="default_color_toolbar_item_secondary">#FF545967</color>
